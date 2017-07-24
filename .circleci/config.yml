@@ -21,8 +21,9 @@ jobs:
           name: Deploy to Docker Hub
 
           # push Docker images if tag /deploy-.*/
+          # git tag --points-at `git rev-parse HEAD`
           command: |
-            if [[ `git describe` =~ ^deploy-.* ]]; then
+            if [[ `git tag --points-at $CIRCLE_SHA1` =~ ^deploy-.* ]]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push shyd/php-test:latest
               docker push shyd/php-test:7-fpm
