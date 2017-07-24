@@ -1,8 +1,8 @@
-# php
+# PHP
 
 [![Build Status](https://travis-ci.org/shyd/docker-php.svg?branch=master)](https://travis-ci.org/shyd/docker-php)
 
-PHP with sSMTP for sending mail. Built in with these base images:
+PHP with sSMTP for sending mail. Built in with these base images (<https://hub.docker.com/_/php/>):
 
 - `fpm (latest)`
 - `7-fpm`
@@ -16,4 +16,4 @@ Contents:
 ````
 mailhub=<IpOfPostfixHost>
 FromLineOverride=YES
-`````
+````
