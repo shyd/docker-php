@@ -20,7 +20,7 @@ jobs:
       - deploy:
           name: Deploy to Docker Hub
 
-          # push Docker images
+          # push Docker images if tag /deploy-.*/
           command: |
             if [[ `git describe` =~ ^deploy-.* ]]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
