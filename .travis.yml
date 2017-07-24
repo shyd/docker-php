@@ -4,13 +4,13 @@ services:
   - docker
 
 before_install:
-  - docker build -t shyd/php-test:fpm -f Dockerfile.fpm .
-  - docker tag shyd/php-test:fpm shyd/php-test:latest
-  - docker build -t shyd/php-test:7-fpm -f Dockerfile.7-fpm .
-  - docker build -t shyd/php-test:5-fpm -f Dockerfile.5-fpm .
+  - docker build -t shyd/php:fpm -f Dockerfile.fpm .
+  - docker tag shyd/php:fpm shyd/php:latest
+  - docker build -t shyd/php:7-fpm -f Dockerfile.7-fpm .
+  - docker build -t shyd/php:5-fpm -f Dockerfile.5-fpm .
 
 script:
-  - docker run -d --name php shyd/php-test:latest
+  - docker run -d --name php shyd/php:latest
 
 after_script:
   - sudo docker kill $(docker ps -q);
@@ -19,4 +19,4 @@ after_script:
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push shyd/php-test
+  - docker push shyd/php
