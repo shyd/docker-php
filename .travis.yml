@@ -1,0 +1,22 @@
+sudo: true
+
+services:
+  - docker
+
+before_install:
+  - docker build -t shyd/php-test:fpm -f Dockerfile.fpm .
+  - docker tag shyd/php-test:fpm shyd/php-test:latest
+  - docker build -t shyd/php-test:7-fpm -f Dockerfile.7-fpm .
+  - docker build -t shyd/php-test:5-fpm -f Dockerfile.5-fpm .
+
+script:
+  - docker run -d --name php shyd/php-test:latest
+
+after_script:
+  - sudo docker kill $(docker ps -q);
+  - sudo docker rm $(docker ps -aq);
+  - sudo docker rmi $(docker images -q);
+
+after_success:
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push shyd/php-test
