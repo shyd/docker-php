@@ -19,6 +19,7 @@ jobs:
 
     deployment:
       tag: /deploy-.*/
+
       # push Docker images
       commands: |
         docker login -u $DOCKER_USER -p $DOCKER_PASS
