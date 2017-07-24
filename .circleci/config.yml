@@ -17,13 +17,14 @@ jobs:
           TAG=5-fpm
           docker build -t shyd/php-test:$TAG -f Dockerfile.$TAG .
 
-    deployment:
-      release:
-        tag: /deploy-.*/
+      - deploy:
+          name: Deploy to Docker Hub
 
-        # push Docker images
-        commands: |
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push shyd/php-test:latest
-          docker push shyd/php-test:7-fpm
-          docker push shyd/php-test:5-fpm
+          # push Docker images
+          command: |
+            if [[ `git describe` =~ ^deploy-.* ]]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push shyd/php-test:latest
+              docker push shyd/php-test:7-fpm
+              docker push shyd/php-test:5-fpm
+            fi
