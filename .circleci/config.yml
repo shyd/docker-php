@@ -8,7 +8,7 @@ jobs:
 
       - setup_remote_docker
 
-      # build and push Docker image
+      # build Docker images
       - run: |
           TAG=fpm
           docker build -t shyd/php-test:latest -f Dockerfile.$TAG .
@@ -19,6 +19,7 @@ jobs:
 
     deployment:
       tag: /deploy-.*/
+      # push Docker images
       commands: |
         docker login -u $DOCKER_USER -p $DOCKER_PASS
         docker push shyd/php-test:latest
