@@ -16,9 +16,8 @@ jobs:
           docker build -t shyd/php-test:$TAG -f Dockerfile.$TAG .
           TAG=5-fpm
           docker build -t shyd/php-test:$TAG -f Dockerfile.$TAG .
-          
+
       - deploy:
-        release:
           tag: /deploy-.*/
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
