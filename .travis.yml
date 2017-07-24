@@ -17,6 +17,6 @@ after_script:
   - sudo docker rm $(docker ps -aq);
   - sudo docker rmi $(docker images -q);
 
-after_success:
-  - docker login -u $DOCKER_USER -p $DOCKER_PASS
-  - docker push shyd/php
+#after_success:
+#  - docker login -u $DOCKER_USER -p $DOCKER_PASS
+#  - docker push shyd/php
