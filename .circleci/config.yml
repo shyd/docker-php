@@ -11,6 +11,6 @@ jobs:
       # build and push Docker image
       - run: |
           TAG=7-fpm
-          docker build -t shyd/php-test:$TAG .
+          docker build -t shyd/php-test:$TAG ./Dockerfile.$TAG
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker push shyd/php-test:$TAG
