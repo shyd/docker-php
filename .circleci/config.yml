@@ -10,7 +10,18 @@ jobs:
 
       # build and push Docker image
       - run: |
+          TAG=fpm
+          docker build -t shyd/php-test:$TAG -f Dockerfile.$TAG .
           TAG=7-fpm
           docker build -t shyd/php-test:$TAG -f Dockerfile.$TAG .
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push shyd/php-test:$TAG
+          TAG=5-fpm
+          docker build -t shyd/php-test:$TAG -f Dockerfile.$TAG .
+  deployment:
+    release:
+      tag: /deploy-.*/
+      owner: shyd
+      commands:
+        - docker login -u $DOCKER_USER -p $DOCKER_PASS
+        - docker push shyd/php-test:fpm
+        - docker push shyd/php-test:7-fpm
+        - docker push shyd/php-test:5-fpm
