@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/shyd/docker-php.svg?branch=master)](https://travis-ci.org/shyd/docker-php)
 
-PHP with sSMTP for sending mail. Built in with these base images (<https://hub.docker.com/_/php/>):
+PHP with sSMTP to allow sending mails. Built with these base images (<https://hub.docker.com/_/php/>):
 
 - `fpm (latest)`
 - `7-fpm`
@@ -10,7 +10,7 @@ PHP with sSMTP for sending mail. Built in with these base images (<https://hub.d
 
 ## Usage
 
-Mount a config with the ip of postfix `./ssmtp.conf:/etc/ssmtp/ssmtp.conf:ro`
+Mount a config with the ip of a postfix host to `./ssmtp.conf:/etc/ssmtp/ssmtp.conf:ro`
 
 Contents:
 ````
